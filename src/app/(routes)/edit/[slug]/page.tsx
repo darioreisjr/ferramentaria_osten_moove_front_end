@@ -1,9 +1,12 @@
 "use client"
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
+import toolsFetche from "@/axios/config"
 import { useForm } from "react-hook-form"
 
 import { z } from "zod";
+import { useParams, useRouter } from 'next/navigation'
+import { useEffect } from "react";
 
 type Inputs = {
   name: String
@@ -23,30 +26,47 @@ const newToolSchema = z.object({
   mechanic: z.string(),
 })
 
-export default function NewTool() {
+
+export default function Edit() {
+  const { slug } = useParams()
+
+  const router = useRouter()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<Inputs>({
     resolver: zodResolver(newToolSchema),
   })
 
-  const onSubmit = data => axios.post("https://ferramentariaostenmoovebackend.onrender.com/tool", data)
-    .then(() => alert('Cadastro realizado com sucesso'))
+  const updateTool = data => toolsFetche.put(`/tool/${slug}`, data)
+    .then(() => router.push('/tools'))
+    .then(() => alert("Ferramenta atualizada com sucesso!!!"))
     .catch((err) => console.log(err))
 
+    useEffect(() => { 
+      if (slug) {
+        toolsFetche.get(`/tool/${slug}`)
+          .then((response) => {
+            reset(response.data)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+    }, [slug, reset])
 
   return (
-    <div className="min-w-[320px] max-w-[1200px] max-h-full flex flex-col m-auto items-center">
+    <main className="min-w-[320px] max-w-[1200px] max-h-full flex flex-col m-auto items-center">
       <h2
         className="m-[1rem] font-extrabold text-[30px] "
       >
-        Inserir nova Ferramenta
+        Editar Ferramenta
       </h2>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(updateTool)}
         className="flex flex-col gap-2 min-w-[300px] max-w-[1100px] mb-28"
         autoComplete="off"
       >
@@ -88,7 +108,7 @@ export default function NewTool() {
           <label>Data e hora da coleta</label>
           <input
             className="p-[10px] bg-slate-900 outline-0 rounded"
-            type="datetime-local"
+            type="date"
             name="collectionDate"
             {...register("collectionDate")}
           />
@@ -98,7 +118,7 @@ export default function NewTool() {
           <label>Data e hora da devolução</label>
           <input
             className="p-[10px] bg-slate-900 outline-0 rounded"
-            type="datetime-local"
+            type="date"
             name="returnDate"
             {...register("returnDate")}
           />
@@ -119,9 +139,9 @@ export default function NewTool() {
           type="submit"
           className="bg-green-800 p-[10px] text-gray-50 font-medium rounded"
         >
-          Cadastrar Ferramenta
+          Atualizar Ferramenta
         </button>
       </form >
-    </div >
+    </main >
   )
 }

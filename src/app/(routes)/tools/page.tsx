@@ -4,26 +4,22 @@ import { useEffect, useState } from "react";
 import Card from "@/components/card";
 import toolsFetche from "@/axios/config"
 
-export default function Ferramentas() {
+export default function NewTool() {
   const [tool, setTool] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     toolsFetche.get("/tool")
-      .then(response => {
-        // Formatar as datas antes de definir o estado
-        const tools = response.data.map(tool => {
-          tool.collectionDate = new Date(tool.collectionDate).toLocaleDateString('pt-BR');
-          tool.returnDate = new Date(tool.returnDate).toLocaleDateString('pt-BR');
-          return tool;
-        })
-
-        setTool(tools);
+      .then((response) => {
+        setTool(response.data);
         setLoading(false)
+
       })
-      .catch(error => console.log(error))
-      .finally();
-  }, [])
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally()
+  }, []);
 
   return (
     <section className="flex flex-col justify-between m-auto items-center min-w-screen max-w-[1200px] h-screen ">
@@ -39,6 +35,7 @@ export default function Ferramentas() {
               {tool.map((tool) => (
                 <div key={tool.id}>
                   <Card
+                    id={tool.id}
                     nome={tool.name}
                     descricao={tool.description}
                     status={tool.status}
