@@ -39,7 +39,7 @@ export default function NewTool() {
 
 
   const onSubmit = data => toolsFetche.post("/tool", data)
-    .then(() => router.push('/ferramentas'))
+    .then(() => router.push('/tools'))
     .then(() => alert("Ferramenta cadastrada com sucesso!!!"))
     .catch((err) => console.log(err))
 
