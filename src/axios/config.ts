@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const toolsFetch = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "https://ferramentariaostenmoovebackend.onrender.com",
   headers:{
     "Content-type": "application/json",
   }
