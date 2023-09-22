@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Card from "@/components/card";
 import toolsFetche from "@/axios/config"
 import Image from "next/image";
-import Logo from "../../../../public/Logo.png"
 
 export default function Reservation() {
   const [tool, setTool] = useState([])
@@ -27,10 +26,15 @@ export default function Reservation() {
     <section className="flex flex-col justify-between m-auto items-center min-w-screen max-w-[1200px] h-screen ">
       <h1 className="m-4 p-3 text-5xl font-semibold uppercase">Ferramentas</h1>
       {
-        loading ? (
+        !loading ? (
           <div className="font-medium text-5xl flex flex-col justify-center items-center m-auto" >
-            <Image src={Logo} alt="logo da ferramentaria osten moove" />
+            <Image width={500} height={500} src="https://i.imgur.com/bNHewZ2.png" alt="logo da ferramentaria osten moove" />
             <h1>Carregando Informações...</h1>
+            <div className="inline-block relative w-20 h-20">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
           </div>
         ) : (
           <>
