@@ -26,7 +26,7 @@ export default function Reservation() {
     <section className="flex flex-col justify-between m-auto items-center min-w-screen max-w-[1200px] h-screen ">
       <h1 className="m-4 p-3 text-5xl font-semibold uppercase">Ferramentas</h1>
       {
-        !loading ? (
+        loading ? (
           <div className="font-medium text-5xl flex flex-col justify-center items-center m-auto" >
             <Image width={500} height={500} src="https://i.imgur.com/bNHewZ2.png" alt="logo da ferramentaria osten moove" />
             <h1>Carregando Informações...</h1>
