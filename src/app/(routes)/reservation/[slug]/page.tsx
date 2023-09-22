@@ -62,7 +62,7 @@ export default function Edit() {
       <h2
         className="m-[1rem] font-extrabold text-[30px] "
       >
-        Editar Ferramenta
+        Reservar Ferramenta
       </h2>
       <form
         onSubmit={handleSubmit(updateTool)}
