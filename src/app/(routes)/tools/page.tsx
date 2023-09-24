@@ -5,7 +5,13 @@ import Card from "@/components/card";
 import toolsFetche from "@/axios/config"
 import Image from "next/image";
 
-export default function Reservation() {
+
+export default function Tools() {
+
+   const metadata = {
+    title: 'Projetos',
+  }
+
   const [tool, setTool] = useState([])
   const [loading, setLoading] = useState(true)
 
