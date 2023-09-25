@@ -3,13 +3,24 @@ import { useState } from "react";
 import Modal from "./modal";
 
 import toolsFetche from "@/axios/config"
+import { toast } from "react-toastify";
 
 const Card = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const HandleDelete = (id: any) => {
     toolsFetche.delete(`/tool/${id}`)
-    alert("Ferramenta apagada com sucesso!!!!")
+    toast.success('Ferramentanta deletada com sucesso', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      })
+    
     window.location.reload()
   }
 

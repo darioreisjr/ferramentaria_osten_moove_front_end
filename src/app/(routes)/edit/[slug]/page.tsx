@@ -8,6 +8,9 @@ import { z } from "zod";
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect } from "react";
 
+import { ToastContainer, toast } from 'react-toastify';
+
+
 type Inputs = {
   name: String
   description: String
@@ -43,20 +46,32 @@ export default function Edit() {
 
   const updateTool = data => toolsFetche.put(`/tool/${slug}`, data)
     .then(() => router.push('/tools'))
-    .then(() => alert("Ferramenta atualizada com sucesso!!!"))
+    .then(() => 
+    toast.success('Ferramentanta atualizada com sucesso', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      })
+    )
+
     .catch((err) => console.log(err))
 
-    useEffect(() => { 
-      if (slug) {
-        toolsFetche.get(`/tool/${slug}`)
-          .then((response) => {
-            reset(response.data)
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-      }
-    }, [slug, reset])
+  useEffect(() => {
+    if (slug) {
+      toolsFetche.get(`/tool/${slug}`)
+        .then((response) => {
+          reset(response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }, [slug, reset])
 
   return (
     <main className="min-w-[320px] max-w-[1200px] max-h-full flex flex-col m-auto items-center">

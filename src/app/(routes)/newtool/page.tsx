@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 
 import { z } from "zod";
 import { useRouter } from 'next/navigation'
+import { toast } from "react-toastify";
 
 type Inputs = {
   name: String
@@ -40,7 +41,18 @@ export default function NewTool() {
 
   const onSubmit = data => toolsFetche.post("/tool", data)
     .then(() => router.push('/tools'))
-    .then(() => alert("Ferramenta cadastrada com sucesso!!!"))
+    .then(() => 
+    toast.success('Ferramentanta cadastrada com sucesso', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      })
+    )
     .catch((err) => console.log(err))
 
 

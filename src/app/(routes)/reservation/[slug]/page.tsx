@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod";
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 type Inputs = {
   name: String
@@ -42,7 +43,18 @@ export default function Edit() {
 
   const updateTool = data => toolsFetche.put(`/tool/${slug}`, data)
     .then(() => router.push('/tools'))
-    .then(() => alert("Ferramenta reservada com sucesso!!!"))
+    .then(() => 
+    toast.success('Ferramenta reservada com sucesso!!!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      })
+    )
     .catch((err) => console.log(err))
 
     useEffect(() => { 
