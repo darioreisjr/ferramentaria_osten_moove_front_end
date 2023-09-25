@@ -7,3 +7,19 @@ body {
   bg-gray-950
   text-gray-500
 }
+
+body::-webkit-scrollbar {
+  @apply
+  w-2
+}
+
+body::-webkit-scrollbar-track {
+  @apply
+  bg-zinc-950
+}
+
+body::-webkit-scrollbar-thumb {
+  @apply
+  bg-purple-950 
+  rounded-sm     
+}
