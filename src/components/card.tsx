@@ -8,19 +8,18 @@ import { toast } from "react-toastify";
 const Card = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const HandleDelete = (id: any) => {
-    toolsFetche.delete(`/tool/${id}`)
-    toast.success('Ferramentanta deletada com sucesso', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      })
-    
+  const HandleDelete = async (id: any) => {
+    await toolsFetche.delete(`/tool/${id}`)
+        toast.success('Ferramentanta deletada com sucesso', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
     window.location.reload()
   }
 
@@ -72,9 +71,9 @@ const Card = (props: any) => {
             </span>
           ) : (
             props.status === "Available" ?
-              <span className="text-center p-2 m-auto bg-green-100 text-green-800 text-xs font-medium rounded dark:bg-green-900 dark:text-green-300">{props.status === "Available" ? "Disponível" : "" }</span>
+              <span className="text-center p-2 m-auto bg-green-100 text-green-800 text-xs font-medium rounded dark:bg-green-900 dark:text-green-300">{props.status === "Available" ? "Disponível" : ""}</span>
               :
-              <span className="text-center p-2 m-auto bg-red-100 text-red-800 text-xs font-medium rounded dark:bg-red-900 dark:text-red-300">{props.status === "Reserved" ? "Reservado" : "" }</span>
+              <span className="text-center p-2 m-auto bg-red-100 text-red-800 text-xs font-medium rounded dark:bg-red-900 dark:text-red-300">{props.status === "Reserved" ? "Reservado" : ""}</span>
           )
         }
       </div>

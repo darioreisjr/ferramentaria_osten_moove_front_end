@@ -7,11 +7,6 @@ import Image from "next/image";
 
 
 export default function Tools() {
-
-   const metadata = {
-    title: 'Projetos',
-  }
-
   const [tool, setTool] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -20,7 +15,6 @@ export default function Tools() {
       .then((response) => {
         setTool(response.data);
         setLoading(false)
-
       })
       .catch((error) => {
         console.log(error);
