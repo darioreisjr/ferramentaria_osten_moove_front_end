@@ -72,7 +72,7 @@ export default function Edit() {
   return (
     <main className="min-w-[320px] max-w-[1200px] max-h-full flex flex-col m-auto items-center">
       <h2
-        className="m-[1rem] font-extrabold text-[30px] "
+        className="m-[1rem] font-extrabold text-[30px] uppercase"
       >
         Reservar Ferramenta
       </h2>
