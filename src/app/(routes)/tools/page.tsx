@@ -23,7 +23,7 @@ export default function Tools() {
   }, []);
 
   return (
-    <section className="flex flex-col justify-between m-auto items-center min-w-screen max-w-[1200px] h-screen ">
+    <section className="flex flex-col justify-between m-auto items-center min-w-screen max-w-[1200px] ">
       <h1 className="m-4 p-3 text-5xl font-semibold uppercase">Ferramentas</h1>
       {
         loading ? (
